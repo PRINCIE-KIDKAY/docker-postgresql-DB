@@ -30,7 +30,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin          # Default login password
     ports:
       - 8081:80  # pgAdmin exposed to host:8081
-      - 80:80  # pgAdmin exposed on port 80 for Coolify
+      # - 80:80  # pgAdmin exposed on port 80 for Coolify
     depends_on:
       - db
 
