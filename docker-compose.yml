@@ -19,7 +19,7 @@ services:
     restart: always
     ports:
       - 8180:8080  # Adminer exposed on host:8180
-      - 80:8080  # Adminer exposed on port 80 for Coolify
+      # - 80:8080  # Adminer exposed on port 80 for Coolify
 
   pgadmin:
     container_name: my-pgadmin
