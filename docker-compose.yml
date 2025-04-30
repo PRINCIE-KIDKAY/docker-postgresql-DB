@@ -1,22 +1,36 @@
+version: '3.8'
+
 services:
   db:
     container_name: my-postgres-db
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: postgres          # ✅ Custom username
-      POSTGRES_PASSWORD: 123456     # ✅ Custom password
-      POSTGRES_DB: postgres        # ✅ Custom database name
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgres
     ports:
-      - "5532:5432"  # Expose to any localhost port
+      - "5532:5432"  # PostgreSQL exposed to host as port 5532
     volumes:
-      - pgdata:/var/lib/postgresql/data 
- 
+      - pgdata:/var/lib/postgresql/data
+
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8180:8080 # Expose to any localhost port
- 
+      - 8180:8080  # Adminer exposed on host:8180
+
+  pgadmin:
+    container_name: my-pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com   # Default login email
+      PGADMIN_DEFAULT_PASSWORD: admin          # Default login password
+    ports:
+      - "8081:80"  # pgAdmin exposed to host:8081
+    depends_on:
+      - db
+
 volumes:
   pgdata:
