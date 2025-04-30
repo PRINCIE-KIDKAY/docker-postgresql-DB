@@ -19,6 +19,7 @@ services:
     restart: always
     ports:
       - 8180:8080  # Adminer exposed on host:8180
+      - 80:8080  # Adminer exposed on port 80 for Coolify
 
   pgadmin:
     container_name: my-pgadmin
@@ -28,7 +29,8 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com   # Default login email
       PGADMIN_DEFAULT_PASSWORD: admin          # Default login password
     ports:
-      - "8081:80"  # pgAdmin exposed to host:8081
+      - 8081:80  # pgAdmin exposed to host:8081
+      - 80:80  # pgAdmin exposed on port 80 for Coolify
     depends_on:
       - db
 
